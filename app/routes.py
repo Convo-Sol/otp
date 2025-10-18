@@ -198,3 +198,20 @@ def reset_password():
     supabase.table('app_users').update({'password': new_password}).eq('email', email).execute()
 
     return jsonify({"message": "Password reset successful"})
+
+
+@bp.route("/", methods=["GET"])
+def home():
+    return jsonify({
+        "status": "success",
+        "message": "OTP API is running successfully 🚀",
+        "available_endpoints": [
+            "/request-otp",
+            "/verify-otp",
+            "/login-password",
+            "/admin-login",
+            "/set-password",
+            "/forgot-password",
+            "/reset-password"
+        ]
+    })
